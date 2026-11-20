@@ -20,8 +20,8 @@ class Config:
     VI_EN_REPO: str = os.getenv("VI_EN_REPO", "dekthedev/opus-mt-vi-en-ct2-int8")
 
     # Translation parameters
-    # Beam size: 4 is best quality, 1 or 2 is faster with even lower memory
-    BEAM_SIZE: int = int(os.getenv("BEAM_SIZE", "4"))
+    # Beam size: 1 is greedy search (lowest RAM, fastest on 0.1 CPU), 2-4 gives slight nuance
+    BEAM_SIZE: int = int(os.getenv("BEAM_SIZE", "1"))
     DEVICE: str = os.getenv("DEVICE", "cpu")
     COMPUTE_TYPE: str = os.getenv("COMPUTE_TYPE", "int8")
 

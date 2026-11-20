@@ -12,6 +12,21 @@ def get_ram_mb() -> float:
     return process.memory_info().rss / (1024 * 1024)
 
 
+def release_system_memory():
+    """Force Python garbage collection and prompt Linux glibc to release heap pages back to the OS kernel.
+    
+    This is essential in containerized Linux environments (e.g. Render with 512MB RAM) where glibc
+    allocations otherwise remain resident in RSS.
+    """
+    import gc
+    gc.collect()
+    try:
+        import ctypes
+        ctypes.CDLL("libc.so.6").malloc_trim(0)
+    except Exception:
+        pass
+
+
 class MemoryGuard:
     """Context manager and tracker for peak RAM consumption."""
 

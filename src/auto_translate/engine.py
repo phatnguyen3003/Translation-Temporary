@@ -8,7 +8,7 @@ import ctranslate2
 import sentencepiece as spm
 from huggingface_hub import snapshot_download
 from .config import Config
-from .memory import get_ram_mb
+from .memory import get_ram_mb, release_system_memory
 
 
 class ModelBundle:
@@ -21,7 +21,7 @@ class ModelBundle:
             device=device,
             compute_type=compute_type,
             inter_threads=1,
-            intra_threads=2,
+            intra_threads=1,
         )
 
         source_spm = os.path.join(model_dir, "source.spm")
@@ -42,7 +42,7 @@ class ModelBundle:
             self.sp_target = self.sp_source
 
     def unload(self):
-        """Explicitly release model weights from memory."""
+        """Explicitly release model weights from memory and trim system heap."""
         if self.translator is not None:
             try:
                 self.translator.unload_model()
@@ -51,6 +51,7 @@ class ModelBundle:
             self.translator = None
         self.sp_source = None
         self.sp_target = None
+        release_system_memory()
 
     def translate_sentence(self, text: str, beam_size: int = 4) -> str:
         """Tokenize with SentencePiece, translate via CT2, and decode."""
@@ -90,22 +91,28 @@ def get_model(repo_id: str, config: Optional[Config] = None) -> ModelBundle:
             old_bundle = _loaded_models.pop(_active_pivot_repo)
             old_bundle.unload()
             del old_bundle
-            gc.collect()
+            release_system_memory()
 
     ram_before = get_ram_mb()
 
     # Try local cache first to avoid network overhead, fallback to online download
+    # max_workers=1 ensures low memory overhead during snapshot download in 512MB RAM containers
     try:
         model_dir = snapshot_download(
             repo_id=repo_id,
             cache_dir=str(cfg.CACHE_DIR) if cfg.CACHE_DIR else None,
             local_files_only=True,
+            max_workers=1,
         )
     except Exception:
         model_dir = snapshot_download(
             repo_id=repo_id,
             cache_dir=str(cfg.CACHE_DIR) if cfg.CACHE_DIR else None,
+            max_workers=1,
         )
+
+    # Release any buffers accumulated during file downloading/unpacking
+    release_system_memory()
 
     bundle = ModelBundle(
         model_dir=model_dir,
@@ -117,6 +124,7 @@ def get_model(repo_id: str, config: Optional[Config] = None) -> ModelBundle:
     if repo_id != cfg.VI_EN_REPO:
         _active_pivot_repo = repo_id
 
+    release_system_memory()
     ram_after = get_ram_mb()
     print(f"[Engine] Loaded '{repo_id}'. RAM: {ram_before:.1f} MB -> {ram_after:.1f} MB (Delta: {ram_after - ram_before:.1f} MB)")
 
