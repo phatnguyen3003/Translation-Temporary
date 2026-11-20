@@ -24,13 +24,6 @@ This service is ready to deploy on **Render.com's Free Web Service tier (512 MB 
 ### How to Deploy to Render (Step-by-Step):
 
 1. **Push your code to GitHub / GitLab:**
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit for Auto_Translate API"
-   git remote add origin https://github.com/<your-username>/auto-translate.git
-   git push -u origin main
-   ```
 
 2. **Create Web Service on Render:**
    * Go to [dashboard.render.com](https://dashboard.render.com) $\rightarrow$ Click **New +** $\rightarrow$ **Web Service**.
