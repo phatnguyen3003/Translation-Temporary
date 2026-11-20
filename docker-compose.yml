@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  translator-api:
+    build: .
+    ports:
+      - "10000:10000"
+    environment:
+      - PORT=10000
+      - OMP_NUM_THREADS=2
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'       # Hard 10% single-core CPU limit (mirrors Render Free Tier)
+          memory: 512M      # Hard 512MB RAM ceiling
+        reservations:
+          memory: 256M
+    volumes:
+      # Persist model weights so it doesn't re-download on every start
+      - hf_model_cache:/app/hf_cache
+
+volumes:
+  hf_model_cache:

@@ -1,0 +1,42 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Model cache & heavy weight files (Prevents 700MB+ models from pushing to GitHub)
+hf_cache/
+*.bin
+*.spm
+*.gguf
+*.safetensors
+
+# Local environment & secrets
+.env
+.env.local
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build artifacts & distribution
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# IDE & OS files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+*.log

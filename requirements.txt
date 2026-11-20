@@ -1,0 +1,8 @@
+ctranslate2>=4.0.0
+sentencepiece>=0.2.0
+huggingface-hub>=0.20.0
+psutil>=5.9.0
+fastapi>=0.100.0
+uvicorn[standard]>=0.23.0
+python-dotenv>=1.0.0
+pytest>=8.0.0
