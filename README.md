@@ -6,6 +6,48 @@ Powered by **CTranslate2 INT8** and **SentencePiece** (pure C++ engine, zero PyT
 
 ---
 
+## 🌐 Live API Deployment
+
+* **Live Base URL:** `https://translation-temporary.onrender.com`
+* **Interactive Swagger UI:** [https://translation-temporary.onrender.com/docs](https://translation-temporary.onrender.com/docs)
+* **Status:** 🟢 **Online & Public (Zero Setup / No API Key Required)**
+* **Full Integration Guide:** [API_DOCUMENTATION.md](API_DOCUMENTATION.md)
+
+---
+
+## Quick Example: Call the Live API Right Now
+
+### Via cURL (Terminal):
+```bash
+curl -X POST "https://translation-temporary.onrender.com/translate" \
+     -H "Content-Type: application/json; charset=utf-8" \
+     -d '{"text": "Xin chào thế giới!", "target": "English"}'
+```
+
+### Via JavaScript (Browser / Node.js):
+```javascript
+const res = await fetch("https://translation-temporary.onrender.com/translate", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ text: "Hôm nay thời tiết rất đẹp.", target: "French" })
+});
+const data = await res.json();
+console.log(data.translated_text);
+```
+
+### Via Python:
+```python
+import requests
+
+res = requests.post(
+    "https://translation-temporary.onrender.com/translate",
+    json={"text": "Trí tuệ nhân tạo đang thay đổi thế giới.", "target": "Japanese"}
+)
+print(res.json()["translated_text"])
+```
+
+---
+
 ## Performance & Memory Benchmarks
 
 * **Base Process RAM:** ~41.1 MB
