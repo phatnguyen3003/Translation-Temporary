@@ -24,17 +24,32 @@ class ModelBundle:
             intra_threads=1,
         )
 
-        source_spm = os.path.join(model_dir, "source.spm")
-        target_spm = os.path.join(model_dir, "target.spm")
+        # Search for SentencePiece models across standard naming conventions (Marian, QuickMT, NLLB)
+        source_candidates = ["source.spm", "src.spm.model", "spm.model", "source.model"]
+        target_candidates = ["target.spm", "tgt.spm.model", "spm.model", "target.model"]
+
+        source_spm = None
+        for cand in source_candidates:
+            p = os.path.join(model_dir, cand)
+            if os.path.exists(p):
+                source_spm = p
+                break
+
+        target_spm = None
+        for cand in target_candidates:
+            p = os.path.join(model_dir, cand)
+            if os.path.exists(p):
+                target_spm = p
+                break
 
         self.sp_source: Optional[spm.SentencePieceProcessor] = None
         self.sp_target: Optional[spm.SentencePieceProcessor] = None
 
-        if os.path.exists(source_spm):
+        if source_spm:
             self.sp_source = spm.SentencePieceProcessor()
             self.sp_source.load(source_spm)
 
-        if os.path.exists(target_spm):
+        if target_spm:
             self.sp_target = spm.SentencePieceProcessor()
             self.sp_target.load(target_spm)
         elif self.sp_source is not None:
@@ -71,6 +86,18 @@ class ModelBundle:
 
 _loaded_models: Dict[str, ModelBundle] = {}
 _active_pivot_repo: Optional[str] = None
+
+
+def unload_model(repo_id: str):
+    """Explicitly evict and deallocate a cached model by repo ID."""
+    global _loaded_models, _active_pivot_repo
+    if repo_id in _loaded_models:
+        bundle = _loaded_models.pop(repo_id)
+        bundle.unload()
+        del bundle
+        release_system_memory()
+    if _active_pivot_repo == repo_id:
+        _active_pivot_repo = None
 
 
 def get_model(repo_id: str, config: Optional[Config] = None) -> ModelBundle:

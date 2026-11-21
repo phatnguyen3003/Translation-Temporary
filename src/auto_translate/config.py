@@ -50,8 +50,8 @@ LANGUAGE_MAP: Dict[str, str] = {
     "chinese": os.getenv("MODEL_EN_ZH", "gaudi/opus-mt-en-zh-ctranslate2"),
     "ja": os.getenv("MODEL_EN_JA", "craftwise/ct2-opus-mt-en-ja-int8"),
     "japanese": os.getenv("MODEL_EN_JA", "craftwise/ct2-opus-mt-en-ja-int8"),
-    "ko": os.getenv("MODEL_EN_KO", "ooeoeo/opus-mt-tc-big-en-ko-ct2-float16"),
-    "korean": os.getenv("MODEL_EN_KO", "ooeoeo/opus-mt-tc-big-en-ko-ct2-float16"),
+    "ko": os.getenv("MODEL_EN_KO", "value-productions/quickmt-en-ko-int8"),
+    "korean": os.getenv("MODEL_EN_KO", "value-productions/quickmt-en-ko-int8"),
     "ru": os.getenv("MODEL_EN_RU", "ooeoeo/opus-mt-en-ru-ct2-float16"),
     "russian": os.getenv("MODEL_EN_RU", "ooeoeo/opus-mt-en-ru-ct2-float16"),
 }

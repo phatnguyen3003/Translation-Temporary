@@ -3,7 +3,7 @@
 import threading
 from typing import Optional
 from .config import Config, LANGUAGE_MAP
-from .engine import get_model, ModelBundle
+from .engine import get_model, unload_model, ModelBundle
 from .memory import release_system_memory
 
 
@@ -62,7 +62,7 @@ class Translator:
             )
 
             if is_heavy:
-                pivot_model.unload()
+                unload_model(target_repo)
                 release_system_memory()
                 # Reload base model for subsequent translations
                 self.vi_en_model = get_model(self.config.VI_EN_REPO, self.config)
