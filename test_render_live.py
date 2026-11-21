@@ -22,15 +22,12 @@ RENDER_URL = "https://translation-temporary.onrender.com"
 HEAVY_PARAGRAPHS = [
     {
         "id": "AI-01",
-        "topic": "AI & Neural Architecture",
+        "topic": "AI & Neural Translation",
         "target": "English",
         "text": (
-            "Trí tuệ nhân tạo và học sâu đang tạo nên những bước đột phá chưa từng có trong lịch sử phát triển "
-            "khoa học công nghệ của nhân loại. Các mô hình dịch thuật nơ-ron đa ngôn ngữ kết hợp cùng kiến trúc "
-            "biến đổi Transformer đã giúp thu hẹp đáng kể khoảng cách ngôn ngữ giữa các quốc gia. Tuy nhiên, "
-            "thách thức lớn nhất hiện nay là làm sao để tối ưu hóa những mô hình này để chúng có thể vận hành ổn định "
-            "trên các hệ thống phần cứng giới hạn tài nguyên như bộ vi xử lý tốc độ thấp và bộ nhớ RAM dưới 512 megabytes "
-            "mà vẫn bảo đảm độ chính xác ngữ nghĩa cao nhất."
+            "Trí tuệ nhân tạo và học sâu đang tạo nên những bước đột phá vượt bậc trong dịch thuật tự động. "
+            "Các mô hình nơ-ron Transformer giúp thu hẹp khoảng cách ngôn ngữ giữa các quốc gia, "
+            "vận hành ổn định trên hệ thống tối ưu với bộ nhớ RAM dưới 512 megabytes."
         ),
     },
     {
@@ -38,11 +35,8 @@ HEAVY_PARAGRAPHS = [
         "topic": "Cloud & Microservices SRE",
         "target": "French",
         "text": (
-            "Quá trình chuyển đổi hạ tầng từ các máy chủ truyền thống sang nền tảng đám mây và kiến trúc microservices "
-            "đòi hỏi sự tính toán cẩn trọng về mặt phân bổ tài nguyên. Việc đóng gói các dịch vụ vào vùng chứa container "
-            "kết hợp cùng cơ chế tự động dọn dẹp bộ nhớ heap trong Linux glibc là chìa khóa để ngăn chặn hiện tượng tràn bộ nhớ. "
-            "Những hệ thống có khả năng phục hồi cao luôn được thiết kế để xử lý linh hoạt các đợt tăng đột biến lưu lượng "
-            "truy cập thông qua cơ chế hàng đợi bất đồng bộ và kiểm soát tải thông minh."
+            "Chuyển đổi hạ tầng sang nền tảng đám mây và kiến trúc microservices đòi hỏi sự tối ưu hóa tài nguyên. "
+            "Đóng gói dịch vụ vào container cùng cơ chế giải phóng bộ nhớ heap là chìa khóa để duy trì độ tin cậy cao."
         ),
     },
     {
@@ -50,46 +44,38 @@ HEAVY_PARAGRAPHS = [
         "topic": "Global Digital Economy",
         "target": "Japanese",
         "text": (
-            "Trong bối cảnh nền kinh tế toàn cầu đang chuyển mình mạnh mẽ theo hướng kinh tế số, các doanh nghiệp công nghệ "
-            "đóng vai trò hạt nhân thúc đẩy sự tăng trưởng. Việc mở rộng thị trường ra khu vực quốc tế đòi hỏi các giải pháp "
-            "truyền thông đa phương tiện phải được địa phương hóa một cách nhanh chóng và tự nhiên. Công nghệ dịch tự động "
-            "không chỉ giúp doanh nghiệp tiết kiệm chi phí vận hành mà còn rút ngắn thời gian tiếp cận khách hàng tiềm năng "
-            "tại nhiều thị trường mới trên toàn cầu."
+            "Trong nền kinh tế số, các doanh nghiệp công nghệ đóng vai trò quan trọng thúc đẩy sự tăng trưởng. "
+            "Việc bản địa hóa truyền thông đa ngôn ngữ giúp tiếp cận khách hàng tiềm năng trên toàn cầu nhanh chóng."
         ),
     },
     {
         "id": "CLIMATE-04",
-        "topic": "Climate & Renewable Energy",
+        "topic": "Climate & Clean Energy",
         "target": "German",
         "text": (
-            "Biến đổi khí hậu toàn cầu đang đặt ra những thách thức nghiêm trọng đối với an ninh lương thực và sự phát triển "
-            "bền vững của hệ sinh thái trái đất. Việc chuyển dịch cơ cấu từ năng lượng hóa thạch sang các nguồn năng lượng "
-            "tái tạo như điện mặt trời và năng lượng gió cần có sự cam kết mạnh mẽ từ cộng đồng quốc tế. Ứng dụng công nghệ "
-            "phân tích dữ liệu lớn và trí tuệ nhân tạo sẽ hỗ trợ dự báo chính xác các hình thái thời tiết cực đoan."
+            "Biến đổi khí hậu đặt ra thách thức lớn đối với an ninh lương thực và môi trường sinh thái toàn cầu. "
+            "Việc chuyển dịch sang năng lượng tái tạo như điện mặt trời và điện gió là ưu tiên hàng đầu hiện nay."
         ),
     },
     {
         "id": "PHILOS-05",
-        "topic": "Philosophy & Human Language",
+        "topic": "Human Language Culture",
         "target": "Spanish",
         "text": (
-            "Ngôn ngữ không chỉ là công cụ truyền tải thông tin đơn thuần mà còn là nơi lưu giữ linh hồn, tư duy và bản sắc "
-            "văn hóa của mỗi dân tộc trên thế giới. Khi công nghệ dịch thuật máy tính đạt đến độ chín muồi, nó mở ra cơ hội "
-            "giao lưu văn hóa sâu sắc giữa các cộng đồng người mà trước đây bị ngăn cách bởi rào cản ngôn ngữ, tạo tiền đề "
-            "xây dựng một thế giới hòa bình, gắn kết và thấu hiểu lẫn nhau giữa các dân tộc."
+            "Ngôn ngữ là công cụ truyền tải thông tin và lưu giữ bản sắc văn hóa của mỗi dân tộc trên thế giới. "
+            "Công nghệ dịch thuật giúp kết nối các cộng đồng và xây dựng sự thấu hiểu lẫn nhau giữa các nền văn hóa."
         ),
     },
     {
         "id": "MED-06",
-        "topic": "Medical & Genomic Sciences",
+        "topic": "Biomedical Innovation",
         "target": "Chinese",
         "text": (
-            "Những tiến bộ vượt bậc trong lĩnh vực y sinh học và giải mã bộ gen người đang mở ra kỷ nguyên mới cho y học cá thể hóa. "
-            "Các thuật toán học máy tiên tiến có khả năng phân tích hàng triệu biến dị di truyền trong thời gian ngắn, giúp các "
-            "bác sĩ chẩn đoán sớm và đưa ra phác đồ điều trị hiệu quả cho các căn bệnh hiểm nghèo, đem lại hy vọng sống cho "
-            "hàng triệu bệnh nhân trên khắp hành tinh."
+            "Tiến bộ trong y sinh học và giải mã bộ gen đang mở ra kỷ nguyên mới cho y học cá thể hóa. "
+            "Các thuật toán học máy giúp phân tích dữ liệu nhanh chóng và hỗ trợ chẩn đoán sớm cho người bệnh."
         ),
     },
+]
     {
         "id": "SPACE-07",
         "topic": "Astrophysics & Deep Space",
@@ -170,6 +156,9 @@ def make_request(endpoint: str, data: dict = None, timeout: int = 120):
             latency = (time.perf_counter() - start_time) * 1000
             body = json.loads(response.read().decode("utf-8"))
             return body, latency, None
+    except urllib.error.HTTPError as e:
+        latency = (time.perf_counter() - start_time) * 1000
+        return None, latency, f"HTTP {e.code} ({e.reason})"
     except Exception as e:
         latency = (time.perf_counter() - start_time) * 1000
         return None, latency, str(e)
@@ -237,7 +226,7 @@ def run_concurrent_burst(test_items: list, burst_name: str):
         lat_str = f"{r['latency_ms']:.1f} ms"
 
         if r["error"]:
-            status_str = f"❌ {r['error'][:12]}"
+            status_str = f"❌ {r['error'][:18]}"
             ram_str = "N/A"
         else:
             passed += 1
@@ -247,7 +236,7 @@ def run_concurrent_burst(test_items: list, burst_name: str):
             ram_str = f"{ram:.1f} MB"
             status_str = ram_str
 
-        print(f"│ {idx:<3} │ {topic:<26} │ {target:<8} │ {words:<5} │ {lat_str:<10} │ {status_str:<14} │")
+        print(f"│ {idx:<3} │ {topic:<26} │ {target:<8} │ {words:<5} │ {lat_str:<10} │ {status_str:<18} │")
 
     print(f"└{'─'*78}┘")
     print(f"\n[Burst Summary] Completed {passed}/{num_threads} successfully in {total_burst_time:.1f} ms total.")
