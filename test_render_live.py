@@ -75,65 +75,58 @@ HEAVY_PARAGRAPHS = [
             "Các thuật toán học máy giúp phân tích dữ liệu nhanh chóng và hỗ trợ chẩn đoán sớm cho người bệnh."
         ),
     },
-]
     {
         "id": "SPACE-07",
-        "topic": "Astrophysics & Deep Space",
+        "topic": "Astrophysics & Space",
         "target": "English",
         "text": (
-            "Công cuộc khám phá không gian sâu thẳm ngoài vũ trụ đang bước sang một chương mới với sự trợ giúp của kính viễn vọng "
-            "không gian hiện đại. Các nhà khoa học đã thu thập được lượng dữ liệu khổng lồ về sự hình thành của các thiên hà xa xôi, "
-            "mở rộng tầm nhìn của nhân loại về nguồn gốc của vũ trụ và tìm kiếm những dấu hiệu của sự sống ngoài trái đất."
+            "Khám phá không gian vũ trụ đang bước sang kỷ nguyên mới với kính thiên văn hiện đại. "
+            "Dữ liệu thu thập giúp mở rộng hiểu biết của nhân loại về sự hình thành của các thiên hà xa xôi."
         ),
     },
     {
         "id": "EDU-08",
-        "topic": "Lifelong Learning & Education",
+        "topic": "Digital Education",
         "target": "French",
         "text": (
-            "Giáo dục trực tuyến và học tập suốt đời đang trở thành xu hướng tất yếu trong thời đại tri thức số. Bất kỳ ai, "
-            "ở bất kỳ nơi đâu trên thế giới cũng có thể tiếp cận kho tàng tri thức vô tận của nhân loại chỉ với một thiết bị "
-            "kết nối internet, thúc đẩy sự công bằng xã hội và giải phóng tiềm năng sáng tạo của từng cá nhân."
+            "Giáo dục trực tuyến và học tập suốt đời đang trở thành xu hướng tất yếu trong thời đại số. "
+            "Bất kỳ ai cũng có thể tiếp cận tri thức nhân loại, thúc đẩy sự công bằng xã hội."
         ),
     },
     {
         "id": "ROBOT-09",
-        "topic": "Robotics & Automation",
+        "topic": "Robotics Automation",
         "target": "Japanese",
         "text": (
-            "Sự kết hợp giữa công nghệ chế tạo robot thông minh và các mô hình thị giác máy tính đang làm thay đổi căn bản "
-            "các quy trình sản xuất công nghiệp tự động hóa. Những dây chuyền sản xuất thông minh có khả năng vận hành liên tục "
-            "với độ chính xác micromet, nâng cao năng suất lao động và giảm thiểu rủi ro cho người lao động trong môi trường độc hại."
+            "Kết hợp chế tạo robot và thị giác máy tính đang làm thay đổi căn bản sản xuất công nghiệp. "
+            "Dây chuyền tự động hóa giúp nâng cao năng suất và giảm thiểu rủi ro cho người lao động."
         ),
     },
     {
         "id": "CYBER-10",
-        "topic": "Cybersecurity & Data Privacy",
+        "topic": "Cybersecurity Privacy",
         "target": "German",
         "text": (
-            "An ninh mạng và bảo mật dữ liệu cá nhân là lá chắn quan trọng nhất bảo vệ các giao dịch trực tuyến trong kỷ nguyên số. "
-            "Các giải pháp mã hóa đầu cuối cùng kiến trúc xác thực đa yếu tố giúp các tổ chức tài chính và cơ quan chính phủ "
-            "chống lại các cuộc tấn công mạng tinh vi và bảo vệ quyền riêng tư của hàng tỷ người dùng trên không gian mạng."
+            "An ninh mạng và bảo mật dữ liệu là lá chắn quan trọng nhất trong kỷ nguyên số. "
+            "Các giải pháp mã hóa giúp bảo vệ quyền riêng tư và an toàn thông tin cho hàng tỷ người dùng."
         ),
     },
     {
         "id": "BIODIV-11",
-        "topic": "Biodiversity & Marine Life",
+        "topic": "Marine Biodiversity",
         "target": "Spanish",
         "text": (
-            "Bảo tồn đa dạng sinh học tại các đại dương là nhiệm vụ sống còn để duy trì cân bằng chuỗi thức ăn tự nhiên toàn cầu. "
-            "Các rạn san hô nhiệt đới vốn là ngôi nhà của hàng ngàn loài thủy sinh quý hiếm đang phải đối mặt với nguy cơ biến mất "
-            "do nhiệt độ nước biển tăng cao và ô nhiễm rác thải nhựa công nghiệp."
+            "Bảo tồn đa dạng sinh học đại dương là nhiệm vụ quan trọng để cân bằng chuỗi thức ăn toàn cầu. "
+            "Bảo vệ các rạn san hô giúp duy trì môi trường sống cho hàng ngàn loài thủy sinh quý hiếm."
         ),
     },
     {
         "id": "SMARTCITY-12",
-        "topic": "Smart Cities & Urban Transport",
+        "topic": "Smart Cities Transit",
         "target": "Chinese",
         "text": (
-            "Quy hoạch đô thị thông minh tích hợp mạng lưới giao thông công cộng chạy điện và hệ thống đèn tín hiệu giao thông "
-            "điều khiển bằng thuật toán thích ứng đang giúp giảm thiểu tình trạng ùn tắc giao thông và lượng khí thải carbon "
-            "tại các siêu đô thị đông dân cư trên thế giới."
+            "Quy hoạch đô thị thông minh tích hợp giao thông công cộng chạy điện giúp giảm thiểu ùn tắc. "
+            "Ứng dụng công nghệ quản lý tài nguyên giúp xây dựng môi trường sống xanh và bền vững."
         ),
     },
 ]
