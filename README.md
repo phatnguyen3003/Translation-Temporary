@@ -9,6 +9,7 @@ Powered by **CTranslate2 INT8** and **SentencePiece** (pure C++ engine, zero PyT
 ## 🌐 Live API Deployment
 
 * **Live Base URL:** `https://translation-temporary.onrender.com`
+* **Supported Target Languages (8):** English (`en`), French (`fr`), German (`de`), Spanish (`es`), Chinese (`zh`), Japanese (`ja`), Korean (`ko`), Russian (`ru`)
 * **Interactive Swagger UI:** [https://translation-temporary.onrender.com/docs](https://translation-temporary.onrender.com/docs)
 * **Status:** 🟢 **Online & Public (Zero Setup / No API Key Required)**
 * **Full Integration Guide:** [API_DOCUMENTATION.md](API_DOCUMENTATION.md)

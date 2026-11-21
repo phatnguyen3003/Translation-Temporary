@@ -103,17 +103,18 @@ TEST_CASES: List[Tuple[str, str]] = [
     (
         "Tôi có một niềm đam mê đặc biệt với việc đi du lịch và khám phá những nền văn hóa mới lạ trên khắp thế giới. "
         "Mỗi vùng đất đi qua đều mang lại cho tôi những trải nghiệm quý giá về ẩm thực, lịch sử và con người bản địa. "
-        "Tôi thường thích tự lên lịch trình chi tiết và tìm đến những địa điểm ít người biết để cảm nhận trọn vẹn nhịp sống địa phương. "
-        "Việc thưởng thức các món ăn truyền thống tại những khu chợ địa phương luôn là phần thú vị nhất trong mỗi hành trình của tôi. "
-        "Qua những cuộc trò chuyện ngắn với người dân bản xứ, tôi hiểu thêm nhiều câu chuyện văn hóa mà sách báo ít khi nhắc tới. "
-        "Những bức ảnh, tấm vé tàu và các món quà lưu niệm nhỏ thu thập được sau mỗi chuyến đi luôn là kỷ niệm vô giá. "
-        "Du lịch không chỉ giúp tôi mở mang tầm mắt mà còn dạy tôi cách thích nghi linh hoạt trước mọi thay đổi bất ngờ. "
-        "Có những chuyến đi gặp thời tiết không thuận lợi, nhưng chính điều đó lại tạo nên những ký ức khó quên nhất. "
-        "Mỗi lần trở về từ một hành trình dài, tôi lại cảm thấy tâm hồn mình được làm mới và có thêm nhiều cảm hứng sáng tạo. "
-        "Tôi cũng thường viết lại nhật ký hành trình để lưu giữ cảm xúc và chia sẻ kinh nghiệm thực tế cho những người cùng sở thích. "
-        "Trong năm tới, mục tiêu lớn nhất của tôi là có thể đặt chân đến ít nhất ba quốc gia mới ở cả châu Á và châu Âu. "
-        "Thế giới rộng lớn ngoài kia luôn ẩn chứa vô vàn điều kỳ diệu đang chờ đợi những bước chân khám phá không ngừng nghỉ.",
+        "Mỗi lần trở về từ một hành trình dài, tôi lại cảm thấy tâm hồn mình được làm mới và có thêm nhiều cảm hứng sáng tạo.",
         "Japanese"
+    ),
+    (
+        "Hôm nay là một ngày tuyệt vời để bắt đầu những dự định mới trong công việc và học tập. "
+        "Sự kiên trì và chăm chỉ mỗi ngày sẽ giúp bạn đạt được những thành tựu rực rỡ và xây dựng tương lai tốt đẹp.",
+        "Korean"
+    ),
+    (
+        "Trí tuệ nhân tạo và công nghệ hiện đại đang thay đổi hoàn toàn cách chúng ta làm việc và giao tiếp. "
+        "Các công cụ dịch thuật tự động thông minh giúp kết nối mọi người trên toàn cầu dễ dàng hơn bao giờ hết.",
+        "Russian"
     ),
 ]
 

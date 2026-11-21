@@ -30,6 +30,8 @@ The service currently supports translating from Vietnamese (`vi`) into the follo
 | **Spanish** | `es` or `Spanish` | OPUS-MT INT8 | Pivot (`vi` $\rightarrow$ `en` $\rightarrow$ `es`) |
 | **Japanese** | `ja` or `Japanese` | OPUS-MT INT8 | Pivot (`vi` $\rightarrow$ `en` $\rightarrow$ `ja`) |
 | **Chinese** | `zh` or `Chinese` | OPUS-MT INT8 | Pivot (`vi` $\rightarrow$ `en` $\rightarrow$ `zh`) |
+| **Korean** | `ko` or `Korean` | OPUS-MT INT8 | Pivot (`vi` $\rightarrow$ `en` $\rightarrow$ `ko`) |
+| **Russian** | `ru` or `Russian` | OPUS-MT INT8 | Pivot (`vi` $\rightarrow$ `en` $\rightarrow$ `ru`) |
 
 *Target language names are case-insensitive (e.g. `"english"`, `"English"`, `"EN"` are all valid).*
 
@@ -127,9 +129,11 @@ Returns the list of currently supported target languages.
     "French",
     "German",
     "Japanese",
+    "Korean",
+    "Russian",
     "Spanish"
   ],
-  "count": 6
+  "count": 8
 }
 ```
 
