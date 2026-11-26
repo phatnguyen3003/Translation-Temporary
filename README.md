@@ -86,6 +86,10 @@ This service is ready to deploy on **Render.com's Free Web Service tier (512 MB 
    * `COMPUTE_TYPE` = `int8`
    * `MAX_CONCURRENCY` = `20`
    * `MAX_ALLOWED_RAM_MB` = `512.0`
+   * *(Optional Keep-Awake 24/7 Service):*
+     * `KEEP_AWAKE_ENABLED` = `true`
+     * `KEEP_AWAKE_URL` = `https://your-other-service.onrender.com,https://translation-temporary.onrender.com/health`
+     * `KEEP_AWAKE_INTERVAL_MINUTES` = `10`
 
 4. **Click "Create Web Service"**:
    Render will deploy the service and assign you a public URL (e.g., `https://auto-translate-api.onrender.com`).
@@ -152,7 +156,21 @@ curl "https://your-service-name.onrender.com/languages"
 curl "https://your-service-name.onrender.com/health"
 ```
 
-### 4. Interactive Swagger Documentation
+### 4. Keep-Awake 24/7 Status (`GET /keep-awake/status`)
+Check the status and history of the background keep-awake service:
+```bash
+curl "https://your-service-name.onrender.com/keep-awake/status"
+```
+
+### 5. Trigger Immediate Keep-Awake Ping (`POST /keep-awake/ping`)
+Trigger an immediate ping to keep a remote Render service awake without waiting for the timer:
+```bash
+curl -X POST "https://your-service-name.onrender.com/keep-awake/ping" \
+     -H "Content-Type: application/json" \
+     -d '{"url": "https://your-other-service.onrender.com"}'
+```
+
+### 6. Interactive Swagger Documentation
 Navigate to `https://your-service-name.onrender.com/docs` in your browser to view the interactive OpenAPI UI.
 
 ---

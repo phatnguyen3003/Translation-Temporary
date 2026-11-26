@@ -139,6 +139,84 @@ Returns the list of currently supported target languages.
 
 ---
 
+### 3.4. Keep-Awake Status (`GET /keep-awake/status`)
+
+Returns the status, configuration, and latest ping results of the background keep-awake service.
+
+#### Endpoint
+`GET https://translation-temporary.onrender.com/keep-awake/status`
+
+#### Successful Response (`200 OK`)
+```json
+{
+  "service": "auto-translate-keep-awake",
+  "enabled": true,
+  "running": true,
+  "interval_minutes": 10,
+  "target_urls": [
+    "https://my-other-app.onrender.com",
+    "https://translation-temporary.onrender.com/health"
+  ],
+  "last_ping_time": "2026-11-26T06:50:00Z",
+  "total_pings": 42,
+  "last_results": [
+    {
+      "url": "https://my-other-app.onrender.com",
+      "status": 200,
+      "ok": true,
+      "latency_ms": 185.3,
+      "error": null,
+      "timestamp": "2026-11-26T06:50:00Z"
+    },
+    {
+      "url": "https://translation-temporary.onrender.com/health",
+      "status": 200,
+      "ok": true,
+      "latency_ms": 12.4,
+      "error": null,
+      "timestamp": "2026-11-26T06:50:00Z"
+    }
+  ]
+}
+```
+
+---
+
+### 3.5. Trigger On-Demand Ping (`POST /keep-awake/ping`)
+
+Immediately pings all configured target URLs (or a specific URL passed in the request body) without waiting for the timer interval.
+
+#### Endpoint
+`POST https://translation-temporary.onrender.com/keep-awake/ping`
+
+#### Request Body (Optional)
+```json
+{
+  "url": "https://my-other-app.onrender.com"
+}
+```
+*If `url` is omitted or empty, all URLs configured in `KEEP_AWAKE_URL` are pinged.*
+
+#### Successful Response (`200 OK`)
+```json
+{
+  "triggered": true,
+  "results": [
+    {
+      "url": "https://my-other-app.onrender.com",
+      "status": 200,
+      "ok": true,
+      "latency_ms": 142.1,
+      "error": null,
+      "timestamp": "2026-11-26T06:52:10Z"
+    }
+  ],
+  "message": "Pings executed successfully."
+}
+```
+
+---
+
 ## 4. Ready-to-Use Code Snippets
 
 ### 4.1. JavaScript / TypeScript (Frontend / React / Vue / Vanilla JS)
@@ -348,6 +426,34 @@ func main() {
 * **Best practice for callers:**
   * For batch translations, send requests **sequentially** (one after another) rather than 10 requests at the exact same millisecond.
   * Normal UI usage (users typing or clicking translate) processes seamlessly with zero delay.
+
+---
+
+### 5.3. Keeping Free-Tier Render Services Awake 24/7 (Keep-Awake Background Service)
+
+Free web services on Render spin down into hibernation after **15 minutes** of inactivity (no incoming HTTP requests). The next request must endure a cold-start delay of 15–30 seconds.
+
+Auto_Translate includes a **built-in zero-overhead background service** designed to keep other free-tier services (and itself) awake around the clock:
+
+#### Configuration via Environment Variables
+
+Set these in your Render Dashboard under **Environment**:
+
+| Environment Variable | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `KEEP_AWAKE_ENABLED` | boolean | `false` | Set to `true` to activate the automatic timer. |
+| `KEEP_AWAKE_URL` | string | `""` | Target URL to ping. Supports multiple comma-separated URLs (e.g. `https://my-web-app.onrender.com,https://translation-temporary.onrender.com/health`). |
+| `KEEP_AWAKE_INTERVAL_MINUTES` | integer | `10` | Interval in minutes between pings. Set between `5` and `12` to ensure the 15-minute Render sleep threshold is never breached. |
+
+#### Key Technical Guarantees
+1. **Zero Extra RAM Overhead:** Uses Python's native standard library (`urllib.request`, `asyncio`), adding **0 MB** of extra dependencies or memory footprint.
+2. **Non-Blocking & Resilient:** Runs in an asynchronous background task on the event loop. Network timeouts, slow external responses, or 404/500 errors from target services are logged safely and will **never** crash or slow down the translation service.
+3. **Self-Ping Supported:** To keep `Auto_Translate` itself awake 24/7, simply include its own health endpoint in `KEEP_AWAKE_URL`:
+   ```env
+   KEEP_AWAKE_ENABLED=true
+   KEEP_AWAKE_URL=https://translation-temporary.onrender.com/health
+   KEEP_AWAKE_INTERVAL_MINUTES=10
+   ```
 
 ---
 

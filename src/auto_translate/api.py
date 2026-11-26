@@ -2,7 +2,8 @@
 
 import os
 import time
-from typing import List
+from contextlib import asynccontextmanager
+from typing import Any, Dict, List, Optional
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
@@ -10,11 +11,23 @@ from pydantic import BaseModel, Field
 from .translator import Translator
 from .memory import get_ram_mb
 from .config import LANGUAGE_MAP
+from .keep_awake import get_keep_awake_service
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Application lifespan manager to start/stop the keep-awake background pinger."""
+    keep_awake = get_keep_awake_service()
+    keep_awake.start()
+    yield
+    await keep_awake.stop()
+
 
 app = FastAPI(
     title="Auto_Translate API",
     description="Ultra-lightweight Vietnamese-to-Any-Language neural translation service running under 512MB RAM.",
     version="0.1.0",
+    lifespan=lifespan,
 )
 
 # Enable CORS for external callers (web frontends, mobile apps, third-party services)
@@ -82,6 +95,31 @@ class LanguagesResponse(BaseModel):
     count: int
 
 
+class PingResult(BaseModel):
+    url: str
+    status_code: int
+    latency_ms: float
+    awake: bool
+    error: Optional[str] = None
+
+
+class KeepAwakeStatusResponse(BaseModel):
+    enabled: bool
+    is_running: bool
+    target_urls: List[str]
+    interval_minutes: int
+    total_pings: int
+    successful_pings: int
+    failed_pings: int
+    last_ping_time: Optional[str] = None
+    last_results: List[PingResult] = []
+
+
+class KeepAwakePingResponse(BaseModel):
+    message: str
+    results: List[PingResult]
+
+
 # ------------------------------------------------------------------------------
 # Endpoints
 # ------------------------------------------------------------------------------
@@ -94,6 +132,7 @@ def root():
         "docs_url": "/docs",
         "health_check": "/health",
         "languages_url": "/languages",
+        "keep_awake_status": "/keep-awake/status",
         "current_ram_mb": round(get_ram_mb(), 1),
     }
 
@@ -142,6 +181,27 @@ def translate_text(req: TranslationRequest):
         target_language=req.target,
         latency_ms=round(latency_ms, 1),
         current_ram_mb=round(get_ram_mb(), 1),
+    )
+
+
+# ------------------------------------------------------------------------------
+# Keep-Awake Endpoints
+# ------------------------------------------------------------------------------
+@app.get("/keep-awake/status", response_model=KeepAwakeStatusResponse, tags=["Keep-Awake"])
+def keep_awake_status():
+    """Retrieve the current status, configuration, and telemetry of the keep-awake service."""
+    service = get_keep_awake_service()
+    return service.get_status()
+
+
+@app.post("/keep-awake/ping", response_model=KeepAwakePingResponse, tags=["Keep-Awake"])
+def trigger_keep_awake_ping():
+    """Manually trigger an immediate keep-awake ping to all configured target URLs."""
+    service = get_keep_awake_service()
+    results = service.ping_all_targets()
+    return KeepAwakePingResponse(
+        message=f"Pinged {len(results)} target(s) successfully.",
+        results=results,
     )
 
 

@@ -35,6 +35,11 @@ class Config:
     BASE_DIR: Path = BASE_DIR
     CACHE_DIR: Path = Path(os.getenv("CACHE_DIR", str(BASE_DIR / "hf_cache")))
 
+    # Keep-awake service for Render Free-Tier (keeps target webpage awake to prevent spin-down)
+    KEEP_AWAKE_ENABLED: bool = os.getenv("KEEP_AWAKE_ENABLED", "false").strip().lower() in ("true", "1", "yes")
+    KEEP_AWAKE_URL: str = os.getenv("KEEP_AWAKE_URL", "").strip()
+    KEEP_AWAKE_INTERVAL_MINUTES: int = max(1, int(os.getenv("KEEP_AWAKE_INTERVAL_MINUTES", "10")))
+
 
 # Target language mapping to CT2 models (can be overridden via environment variables if desired)
 LANGUAGE_MAP: Dict[str, str] = {
