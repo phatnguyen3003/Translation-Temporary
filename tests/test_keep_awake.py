@@ -12,6 +12,7 @@ from src.auto_translate.api import (
     root,
     keep_awake_status,
     trigger_keep_awake_ping,
+    KeepAwakePingRequest,
 )
 from src.auto_translate.config import Config
 from src.auto_translate.keep_awake import (
@@ -129,3 +130,16 @@ def test_keep_awake_api_endpoints():
     ping_resp = trigger_keep_awake_ping()
     assert "results" in ping_resp.model_dump()
     assert ping_resp.results == []
+
+    # Check ping endpoint with custom URL
+    mock_resp = MagicMock()
+    mock_resp.status = 200
+    mock_resp.__enter__.return_value = mock_resp
+    mock_resp.__exit__.return_value = None
+
+    with patch("urllib.request.urlopen", return_value=mock_resp):
+        custom_req = KeepAwakePingRequest(url="https://external-service.onrender.com/health")
+        custom_ping_resp = trigger_keep_awake_ping(custom_req)
+        assert len(custom_ping_resp.results) == 1
+        assert custom_ping_resp.results[0].url == "https://external-service.onrender.com/health"
+        assert custom_ping_resp.results[0].awake is True

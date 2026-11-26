@@ -83,9 +83,16 @@ class KeepAwakeService:
         urls = [u.strip() for u in self.raw_urls.split(",") if u.strip()]
         return [u if u.startswith(("http://", "https://")) else f"https://{u}" for u in urls]
 
-    def ping_all_targets(self) -> List[Dict[str, Any]]:
+    def ping_all_targets(self, custom_urls: Optional[List[str]] = None) -> List[Dict[str, Any]]:
         """Ping all target URLs synchronously and record metrics."""
-        targets = self.get_target_urls()
+        if custom_urls is not None:
+            targets = [
+                u.strip() if u.strip().startswith(("http://", "https://")) else f"https://{u.strip()}"
+                for u in custom_urls if u and u.strip()
+            ]
+        else:
+            targets = self.get_target_urls()
+
         if not targets:
             return []
 

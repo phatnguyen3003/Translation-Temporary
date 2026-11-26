@@ -115,6 +115,10 @@ class KeepAwakeStatusResponse(BaseModel):
     last_results: List[PingResult] = []
 
 
+class KeepAwakePingRequest(BaseModel):
+    url: Optional[str] = Field(None, description="Optional single URL to ping on-demand")
+
+
 class KeepAwakePingResponse(BaseModel):
     message: str
     results: List[PingResult]
@@ -195,10 +199,11 @@ def keep_awake_status():
 
 
 @app.post("/keep-awake/ping", response_model=KeepAwakePingResponse, tags=["Keep-Awake"])
-def trigger_keep_awake_ping():
-    """Manually trigger an immediate keep-awake ping to all configured target URLs."""
+def trigger_keep_awake_ping(req: Optional[KeepAwakePingRequest] = None):
+    """Manually trigger an immediate keep-awake ping to all configured target URLs or a custom URL."""
     service = get_keep_awake_service()
-    results = service.ping_all_targets()
+    custom_urls = [req.url.strip()] if (req and req.url and req.url.strip()) else None
+    results = service.ping_all_targets(custom_urls=custom_urls)
     return KeepAwakePingResponse(
         message=f"Pinged {len(results)} target(s) successfully.",
         results=results,
